@@ -4,3 +4,6 @@
 [submodule "ext/qunit"]
 	path = ext/qunit
 	url = git://github.com/jquery/qunit.git
+[submodule "ext/bootstrap"]
+	path = ext/bootstrap
+	url = git://github.com/twitter/bootstrap.git
