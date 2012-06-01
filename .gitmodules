@@ -1,3 +1,6 @@
 [submodule "ext/doubly-linked-list"]
 	path = ext/doubly-linked-list
 	url = git://github.com/andrewrjones/doubly-linked-list-js.git
+[submodule "ext/qunit"]
+	path = ext/qunit
+	url = git://github.com/jquery/qunit.git
