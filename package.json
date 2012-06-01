@@ -1,0 +1,29 @@
+{
+  "name": "jquery.tiny-slider",
+  "title": "jQuery Tiny Slider",
+  "description": "Minimal implementation of a slider.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/ajones/jquery.tiny-slider",
+  "author": {
+    "name": "Andrew Jones",
+    "email": "andrew@arjones.co.uk",
+    "url": "http://andrew-jones.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ajones/jquery.tiny-slider.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ajones/jquery.tiny-slider/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/ajones/jquery.tiny-slider/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "~1.5"
+  },
+  "keywords": []
+}
