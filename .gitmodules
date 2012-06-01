@@ -1,0 +1,3 @@
+[submodule "ext/doubly-linked-list"]
+	path = ext/doubly-linked-list
+	url = git://github.com/andrewrjones/doubly-linked-list-js.git
