@@ -7,3 +7,6 @@
 [submodule "ext/bootstrap"]
 	path = ext/bootstrap
 	url = git://github.com/twitter/bootstrap.git
+[submodule "ext/jquery-ui"]
+	path = ext/jquery-ui
+	url = git://github.com/jquery/jquery-ui.git
