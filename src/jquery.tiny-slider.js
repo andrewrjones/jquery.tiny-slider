@@ -7,22 +7,19 @@
  */
 
 (function($) {
+  $.widget( "aj.tinyslider" , {
 
-  // Collection method.
-  $.fn.awesome = function() {
-    return this.each(function() {
-      $(this).html('awesome');
-    });
-  };
+    options: {
+      someValue: null
+    },
 
-  // Static method.
-  $.awesome = function() {
-    return 'awesome';
-  };
+    _create: function () {
 
-  // Custom selector.
-  $.expr[':'].awesome = function(elem) {
-    return elem.textContent.indexOf('awesome') >= 0;
-  };
+    },
+
+    _destroy: function () {
+
+    }
+  });
 
 }(jQuery));
