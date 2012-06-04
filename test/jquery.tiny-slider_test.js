@@ -22,35 +22,45 @@
       raises(block, [expected], [message])
   */
 
-  module('jQuery#tinyslider', {
-    setup: function() {
-      this.elems = $('#qunit-fixture').children();
-    }
+  module('jQuery#tinyslider');
+
+  test('simple', 15, function() {
+    var el,
+        center,
+        newEl;
+    
+    el = $('#qunit-fixture').tinyslider();
+    strictEqual(el.tinyslider("size"), 2, 'initial 2 slides');
+    
+    center = el.find('.frame-center');
+    strictEqual(center.size(), 1, 'only one center');
+    strictEqual(center.html(), el.tinyslider("center").data.html(), 'correct center');
+    
+    // append
+    el.tinyslider("append", $("<div>Frame Three</div>"));
+    strictEqual(el.tinyslider("size"), 3, 'now three slides');
+    strictEqual(el.children().first().children().size(), 3, 'now three slides');
+    newEl = el.children().first().children().last();
+    ok(newEl.hasClass('frame'), 'new el has class of frame');
+    strictEqual(newEl.html(), 'Frame Three', 'now three slides');
+    
+    // prepend
+    el.tinyslider("prepend", $("<div>Frame Four</div>"));
+    strictEqual(el.tinyslider("size"), 4, 'now four slides');
+    strictEqual(el.children().first().children().size(), 4, 'now four slides');
+    newEl = el.children().first().children().first();
+    ok(newEl.hasClass('frame'), 'new el has class of frame');
+    strictEqual(newEl.html(), 'Frame Four', 'now three slides');
+    
+    // move to next
+    center = el.tinyslider("center");
+    el.tinyslider("next");
+    notStrictEqual(center.data.html(), el.tinyslider("center").data.html(), 'new center');
+    strictEqual(el.find('.frame-center').size(), 1, 'only one center');
+    // and back again
+    el.tinyslider("previous");
+    strictEqual(center.data.html(), el.tinyslider("center").data.html(), 'prev center');
+    strictEqual(el.find('.frame-center').size(), 1, 'only one center');
   });
-
-  test('is chainable', 1, function() {
-    strictEqual(this.elems.tinyslider(), this.elems, 'should be chaninable');
-  });
-
-  /*test('is awesome', 1, function() {
-    strictEqual(this.elems.awesome().text(), 'awesomeawesomeawesome', 'should be thoroughly awesome');
-  });
-
-  module('jQuery.tinyslider');
-
-  test('is awesome', 1, function() {
-    strictEqual($.awesome(), 'awesome', 'should be thoroughly awesome');
-  });
-
-  module(':tinyslider selector', {
-    setup: function() {
-      this.elems = $('#qunit-fixture').children();
-    }
-  });
-
-  test('is awesome', 1, function() {
-    // Use deepEqual & .get() when comparing jQuery objects.
-    deepEqual(this.elems.filter(':awesome').get(), this.elems.last().get(), 'knows awesome when it sees it');
-  });*/
 
 }(jQuery));

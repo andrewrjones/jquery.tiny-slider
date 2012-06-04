@@ -6,7 +6,9 @@
   <!-- Load jQuery, removing access to $ (use jQuery, not $). -->
   <script src='http://code.jquery.com/jquery-1.7.2.js' type='text/javascript'></script>
   <script>jQuery.noConflict()</script>
+  <!-- Load dependencies -->
   <script src='../ext/jquery-ui/ui/jquery.ui.widget.js' type='text/javascript'></script>
+  <script src='../ext/doubly-linked-list/doubly-linked-list.js' type='text/javascript'></script>
   <!-- Load local QUnit (grunt requires v1.0.0 or newer). -->
   <link rel="stylesheet" href="../ext/qunit/qunit/qunit.css" media="screen">
   <script src="../ext/qunit/qunit/qunit.js"></script>
@@ -21,9 +23,14 @@
   <h2 id="qunit-userAgent"></h2>
   <ol id="qunit-tests"></ol>
   <div id="qunit-fixture">
-    <span>lame test markup</span>
-    <span>normal test markup</span>
-    <span>awesome test markup</span>
+    <div class="frames">
+      <div class="frame">
+        Frame One
+      </div>
+      <div class="frame">
+        Frame Two
+      </div>
+    </div>
   </div>
 </body>
 </html>
