@@ -10,29 +10,40 @@
   $.widget( "aj.tinyslider" , {
 
     options: {
+      sliderClass: 'tiny-slider',
       frameClass: 'frame',
       frameCenterClass: 'frame-center',
-      frameContainerClass: 'frames'
+      frameContainerClass: 'frames',
+      duration: 1500
     },
 
     _create: function () {
       var self = this;
       
+      // set up container
+      self.elSlider = self.element;
+      self.elSlider.addClass(self.options.sliderClass);
+      
+      // store the width, which we will need when we do animations
+      self.sliderWidth = self.element.width();
+      
       // container element
       self.elFrames = self.element.find(
-        '.' + this.options.frameContainerClass)
+        '.' + self.options.frameContainerClass)
         .first();
       
       // internal store of frames
       self.frames = new DoublyLinkedList();
       
       // loop over children to get initial content
-      self.elFrames.find('.' + this.options.frameClass).each(function (index, element) {
+      self.elFrames.find('.' + self.options.frameClass).each(function (index, element) {
         var el = $(element);
         var node = self.frames.append(el);
         
         if(el.hasClass('frame-center')){
           self.centerFrame = node;
+        } else {
+          el.css('visibility', 'hidden');
         }
       });
       
@@ -40,7 +51,8 @@
       if(self.frames.size() > 0){
         if(! self.centerFrame){
           self.centerFrame = self.frames.head();
-          self.centerFrame.data.addClass(this.options.frameCenterClass);
+          self.centerFrame.data.addClass(self.options.frameCenterClass);
+          self.centerFrame.data.css('visibility', '');
         }
       }
     },
@@ -73,9 +85,6 @@
      */
     next: function() {
       var self = this;
-      
-      // TODO: fire events
-      // TODO: animate
 
       // get the current and previous nodes
       var current = self.centerFrame;
@@ -86,9 +95,21 @@
         return;
       }
       
-      // update css
-      current.data.removeClass(self.options.frameCenterClass);
-      next.data.addClass(self.options.frameCenterClass);
+      // animate
+      var elCurrent = current.data;
+      var elNext = next.data;
+      
+      elNext.css('visibility', '');
+      
+      var animateTo = parseInt(elCurrent.css('margin-left'), 10) - self.sliderWidth;
+      elCurrent.animate({
+        'margin-left': animateTo
+      }, self.options.duration, function(){
+        elCurrent.removeClass(self.options.frameCenterClass);
+        elCurrent.css('visibility', 'hidden');
+        
+        elNext.addClass(self.options.frameCenterClass);
+      });
       
       // update the center frame node
       self.centerFrame = next;
@@ -99,9 +120,6 @@
      */
     previous: function() {
       var self = this;
-      
-      // TODO: fire events
-      // TODO: animate
 
       // get the current and previous nodes
       var current = self.centerFrame;
@@ -112,9 +130,21 @@
         return;
       }
       
-      // update css
-      current.data.removeClass(self.options.frameCenterClass);
-      prev.data.addClass(self.options.frameCenterClass);
+      // animate
+      var elCurrent = current.data;
+      var elPrev = prev.data;
+      
+      elPrev.css('visibility', '');
+      
+      var animateTo = parseInt(elPrev.css('margin-left'), 10) + self.sliderWidth;
+      elPrev.animate({
+        'margin-left': animateTo
+      }, self.options.duration, function(){
+        elCurrent.removeClass(self.options.frameCenterClass);
+        elCurrent.css('visibility', 'hidden');
+        
+        elPrev.addClass(self.options.frameCenterClass);
+      });
       
       // update the center frame node
       self.centerFrame = prev;

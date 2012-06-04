@@ -1,0 +1,12 @@
+.tiny-slider {
+    overflow: hidden;
+    position: relative;
+}
+
+.tiny-slider .frames {
+    width: 10000px;
+}
+
+.tiny-slider .frames .frame {
+    float: left;
+}
