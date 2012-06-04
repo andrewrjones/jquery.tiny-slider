@@ -108,6 +108,9 @@
      */
     next: function() {
       var self = this;
+      
+      // fire beforenext event
+      self._trigger('beforenext');
 
       // get the current and previous nodes
       var current = self.centerFrame;
@@ -143,6 +146,9 @@
       
       // update the center frame node
       self.centerFrame = next;
+      
+      // fire next event
+      self._trigger('next');
     },
     
     /*
@@ -150,6 +156,9 @@
      */
     previous: function() {
       var self = this;
+      
+      // fire beforeprev event
+      self._trigger('beforeprev');
 
       // get the current and previous nodes
       var current = self.centerFrame;
@@ -186,6 +195,9 @@
       
       // update the center frame node
       self.centerFrame = prev;
+      
+      // fire prev event
+      self._trigger('prev');
     },
     
     /*
