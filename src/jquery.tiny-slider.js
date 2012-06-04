@@ -10,8 +10,6 @@
   $.widget( "aj.tinyslider" , {
 
     options: {
-      prevClass: 'tinyslider-prev',
-      nextClass: 'tinyslider-next',
       frameClass: 'frame',
       frameCenterClass: 'frame-center',
       frameContainerClass: 'frames'
@@ -38,14 +36,13 @@
         }
       });
       
+      // ensure we have a center frame if we have some frames
       if(self.frames.size() > 0){
         if(! self.centerFrame){
           self.centerFrame = self.frames.head();
           self.centerFrame.data.addClass(this.options.frameCenterClass);
         }
       }
-
-      // attach listeners to next and prev buttons
     },
 
     _destroy: function () {
@@ -76,10 +73,18 @@
      */
     next: function() {
       var self = this;
+      
+      // TODO: fire events
+      // TODO: animate
 
       // get the current and previous nodes
       var current = self.centerFrame;
       var next = self.centerFrame.next;
+      
+      // do we have a next frame?
+      if(! next){
+        return;
+      }
       
       // update css
       current.data.removeClass(self.options.frameCenterClass);
@@ -94,10 +99,18 @@
      */
     previous: function() {
       var self = this;
+      
+      // TODO: fire events
+      // TODO: animate
 
       // get the current and previous nodes
       var current = self.centerFrame;
       var prev = self.centerFrame.prev;
+      
+      // do we have a previous frame?
+      if(! prev){
+        return;
+      }
       
       // update css
       current.data.removeClass(self.options.frameCenterClass);

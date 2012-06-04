@@ -18,7 +18,14 @@
   <script type='text/javascript'>
     jQuery(document).ready(function($) {
       var tinyslider = $("#slider").tinyslider();
-      console.log(tinyslider.size());
+      
+      // move slider on clicks
+      $('.tinyslider-prev').click(function(){
+        tinyslider.tinyslider("previous");
+      });
+      $('.tinyslider-next').click(function(){
+        tinyslider.tinyslider("next");
+      });
     });
   </script>
 </head>
