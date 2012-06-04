@@ -40,6 +40,7 @@
         var el = $(element);
         var node = self.frames.append(el);
         
+        // the first frame is the current frame
         if(index === 0){
           self.centerFrame = node;
           el.addClass(self.options.frameCenterClass);
