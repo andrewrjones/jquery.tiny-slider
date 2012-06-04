@@ -42,7 +42,7 @@
     strictEqual(el.children().first().children().size(), 3, 'now three slides');
     newEl = el.children().first().children().last();
     ok(newEl.hasClass('frame'), 'new el has class of frame');
-    strictEqual(newEl.html(), 'Frame Three', 'now three slides');
+    strictEqual(newEl.children().first().html(), 'Frame Three', 'now three slides');
     
     // prepend
     el.tinyslider("prepend", $("<div>Frame Four</div>"));
@@ -50,7 +50,7 @@
     strictEqual(el.children().first().children().size(), 4, 'now four slides');
     newEl = el.children().first().children().first();
     ok(newEl.hasClass('frame'), 'new el has class of frame');
-    strictEqual(newEl.html(), 'Frame Four', 'now three slides');
+    strictEqual(newEl.children().first().html(), 'Frame Four', 'now three slides');
     
     // move to next
     center = el.tinyslider("center");

@@ -41,6 +41,18 @@
         tinyslider.tinyslider("next");
         return false;
       });
+      tinyslider.tinyslider("prepend", $(
+        '<div class="hero-unit">' +
+        '<h2>Prepended Sldie</h2>' +
+        '<p>This slide was prepended in JavaScript.' +
+        '</div>'
+      ));
+      tinyslider.tinyslider("append", $(
+        '<div class="hero-unit">' +
+        '<h2>Appended Slide</h2>' +
+        '<p>This slide was appended in JavaScript.' +
+        '</div>'
+      ));
     });
   </script>
 </head>
@@ -63,13 +75,6 @@
             <div class="frame">
               <div class="hero-unit">
                 <h2>Second slide</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
-              </div>
-            </div>
-            <div class="frame">
-              <div class="hero-unit">
-                <h2>Third slide</h2>
                 <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
                 <p><a class="btn" href="#">View details &raquo;</a></p>
               </div>

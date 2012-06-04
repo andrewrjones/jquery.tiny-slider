@@ -14,7 +14,7 @@
       frameClass: 'frame',
       frameCenterClass: 'frame-center',
       frameContainerClass: 'frames',
-      duration: 1500
+      duration: 1200
     },
 
     _create: function () {
@@ -68,18 +68,39 @@
      * Appends a new frame to the slider.
      */
     append: function(element) {
-      element.addClass(this.options.frameClass);
-      this.elFrames.append(element);
-      this.frames.append(element);
+      var self = this;
+      
+      // create our frame element
+      var elFrame = $('<div>')
+                    .addClass(self.options.frameClass)
+                    .css('visibility', 'hidden')
+                    .append(element);
+
+      // append to DOM and internal store
+      this.elFrames.append(elFrame);
+      this.frames.append(elFrame);
     },
     
     /*
      * Prepends a new frame to the slider.
      */
     prepend: function(element) {
-      element.addClass(this.options.frameClass);
-      this.elFrames.prepend(element);
-      this.frames.prepend(element);
+      var self = this;
+      
+      // work out the margin we need for our new element
+      var elHead = self.frames.head().data;
+      var margin = parseInt(elHead.css('margin-left'), 10) - self.sliderWidth;
+      
+      // create our frame element
+      var elFrame = $('<div>')
+                    .addClass(self.options.frameClass)
+                    .css('visibility', 'hidden')
+                    .css('margin-left', margin)
+                    .append(element);
+      
+      // prepend to DOM and internal store
+      self.elFrames.prepend(elFrame);
+      self.frames.prepend(elFrame);
     },
     
     /*
@@ -103,10 +124,17 @@
       
       elNext.css('visibility', '');
       
+      // calculate the margin for animation
+      // When moving to the next frame, we move the current frame
+      // to the left by the sliders width, hiding it.
       var animateTo = parseInt(elCurrent.css('margin-left'), 10) - self.sliderWidth;
+      
+      // do animation
       elCurrent.animate({
         'margin-left': animateTo
       }, self.options.duration, function(){
+        
+        // after animation, update classes and visiblity
         elCurrent.removeClass(self.options.frameCenterClass);
         elCurrent.css('visibility', 'hidden');
         
@@ -138,10 +166,18 @@
       
       elPrev.css('visibility', '');
       
+      // calculate the margin
+      // When moving to the previous frame, we move the previous frame
+      // to the right by the sliders width, bringing it back in to the
+      // center and pushing the current frame to the right.
       var animateTo = parseInt(elPrev.css('margin-left'), 10) + self.sliderWidth;
+      
+      // do animation
       elPrev.animate({
         'margin-left': animateTo
       }, self.options.duration, function(){
+        
+        // after animation, update classes and visiblity
         elCurrent.removeClass(self.options.frameCenterClass);
         elCurrent.css('visibility', 'hidden');
         
