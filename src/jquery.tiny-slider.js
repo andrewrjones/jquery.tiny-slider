@@ -40,8 +40,10 @@
         var el = $(element);
         var node = self.frames.append(el);
         
-        if(el.hasClass('frame-center')){
+        if(index === 0){
           self.centerFrame = node;
+          el.addClass(self.options.frameCenterClass);
+          el.css('visibility', '');
         } else {
           el.css('visibility', 'hidden');
         }
