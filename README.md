@@ -9,7 +9,11 @@ _(Coming soon)_
 In your web page:
 
 ```html
+<!-- dependencies -->
 <script src="jquery.js"></script>
+<script src="jquery.ui.widget.js"></script>
+<script src="doubly-linked-list.js"></script>
+<!-- lib -->
 <script src="jquery.tiny-slider.min.js"></script>
 <link href="jquery.tiny-slider.css" rel="stylesheet"></link>
 <script>
